@@ -5,9 +5,14 @@
   "main": "index.js",
   "author": "Murat Ozcan",
   "license": "ISC",
+  "type": "module",
   "scripts": {
     "cy:open-local": "cypress open --e2e --browser chrome --config-file cypress/config/local.config.ts",
     "cy:run-local": "cypress run --e2e --browser chrome --config-file cypress/config/local.config.ts",
+    "db:migrate": "npx prisma migrate reset --force --skip-seed generate",
+    "db:sync": "npx prisma db push --force-reset && npx prisma generate",
+    "reset:db": "tsx ./scripts/global-setup.ts",
+    "start": "source ./scripts/env-setup.sh && npm run db:sync && npm run reset:db && nodemon",
     "mock:server": "npx mockoon-cli start --data ./mockoon/mock.json --port 3001",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|ts|json)\"",
     "fix:format": "npm run prettier -- --write",
@@ -25,6 +30,9 @@
     "@esbuild-plugins/node-modules-polyfill": "0.2.2",
     "@faker-js/faker": "10.1.0",
     "@mockoon/cli": "9.4.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/jest": "30.0.0",
     "@types/lodash": "4.17.21",
     "@types/node": "24.10.4",
@@ -48,10 +56,19 @@
     "eslint-plugin-prettier": "5.5.4",
     "jest": "30.2.0",
     "lodash": "4.17.21",
+    "nodemon": "^3.1.11",
     "npm-run-all2": "8.0.4",
     "prettier": "3.7.4",
     "ts-jest": "29.4.6",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.1",
     "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "prisma": "^7.2.0"
   }
 }

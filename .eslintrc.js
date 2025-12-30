@@ -28,7 +28,7 @@ module.exports = {
       typescript: {}
     }
   },
-  ignorePatterns: ['dist', 'node_modules', 'scripts'],
+  ignorePatterns: ['dist', 'node_modules', 'scripts', '**/*.d.ts'],
   root: true,
   rules: {
     '@typescript-eslint/consistent-type-imports': 'error',
