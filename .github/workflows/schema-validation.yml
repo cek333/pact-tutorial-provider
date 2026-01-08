@@ -1,7 +1,7 @@
 name: Run schema validation
 on:
   pull_request:
-  worflow_dispatch:
+  workflow_dispatch:
 
 # if this branch is pushed back to back, cancel the older branch's workflow
 concurrency:
